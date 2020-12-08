@@ -10,9 +10,12 @@ namespace KitsPlugin
 {
     public class KitsPlugin : RocketPlugin<KitsPluginConfiguration>
     {
+        public static KitsPlugin Instance { get; private set; }
 
         protected override void Load()
         {
+            Instance = this;
+
             Logger.Log(Configuration.Instance.LoadMessage);
             Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!");
         }

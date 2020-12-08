@@ -62,8 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\KitCommand.cs" />
     <Compile Include="KitsPlugin.cs" />
     <Compile Include="KitsPluginConfiguration.cs" />
+    <Compile Include="Models\Kit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
