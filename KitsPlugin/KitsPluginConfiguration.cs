@@ -10,11 +10,13 @@ namespace KitsPlugin
 {
     public class KitsPluginConfiguration : IRocketPluginConfiguration
     {
+        public string MessageColor { get; set; }
         public string LoadMessage { get; set; }
         public Kit[] Kits { get; set; }
 
         public void LoadDefaults()
         {
+            MessageColor = "yellow";
             LoadMessage = "This is kits plugin!";
             Kits = new Kit[]
             {

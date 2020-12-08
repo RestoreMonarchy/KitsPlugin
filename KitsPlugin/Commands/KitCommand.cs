@@ -27,7 +27,7 @@ namespace KitsPlugin.Commands
         {
             if (command.Length < 1)
             {
-                UnturnedChat.Say(caller, "You must specify kit name!");
+                UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitInvalid"), KitsPlugin.Instance.MessageColor);
                 return;
             }
 
@@ -35,7 +35,7 @@ namespace KitsPlugin.Commands
 
             if (kit == null)
             {
-                UnturnedChat.Say(caller, "Kit not found");
+                UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitNotFound"), KitsPlugin.Instance.MessageColor);
                 return;
             }
 
@@ -46,7 +46,7 @@ namespace KitsPlugin.Commands
                 player.GiveItem(item, 1);
             }
 
-            UnturnedChat.Say(caller, $"You received kit {kit.Name}!");
+            UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitSuccess", kit.Name), KitsPlugin.Instance.MessageColor);
         }
     }
 }
