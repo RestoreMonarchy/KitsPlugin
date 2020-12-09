@@ -12,17 +12,20 @@ namespace KitsPlugin
     {
         public string MessageColor { get; set; }
         public string LoadMessage { get; set; }
+        public int GlobalCooldown { get; set; }
         public Kit[] Kits { get; set; }
 
         public void LoadDefaults()
         {
             MessageColor = "yellow";
             LoadMessage = "This is kits plugin!";
+            GlobalCooldown = 30;
             Kits = new Kit[]
             {
                 new Kit()
                 {
                     Name = "default",
+                    Cooldown = 300,
                     Items = new ushort[]
                     {
                         363,

@@ -41,11 +41,31 @@ namespace KitsPlugin.Commands
 
             UnturnedPlayer player = (UnturnedPlayer)caller;
 
+            if (!player.HasPermission($"kit.{kit.Name}"))
+            {
+                UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitNoPermission"), KitsPlugin.Instance.MessageColor);
+                return;
+            }
+
+            TimeSpan timeLeft;
+            if (KitsPlugin.Instance.HasGlobalCooldown(player.Id, out timeLeft))
+            {
+                UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitGlobalCooldown", (int)timeLeft.TotalSeconds), KitsPlugin.Instance.MessageColor);
+                return;
+            }
+
+            if (KitsPlugin.Instance.HasCooldown(player.Id, kit.Name, out timeLeft))
+            {
+                UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitCooldown", (int)timeLeft.TotalSeconds), KitsPlugin.Instance.MessageColor);
+                return;
+            }
+
             foreach (var item in kit.Items)
             {
                 player.GiveItem(item, 1);
             }
 
+            KitsPlugin.Instance.RegisterCooldown(player.Id, kit);
             UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitSuccess", kit.Name), KitsPlugin.Instance.MessageColor);
         }
     }
