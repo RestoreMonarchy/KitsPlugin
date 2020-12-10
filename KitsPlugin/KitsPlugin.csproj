@@ -37,6 +37,10 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>libraries\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Rocket.API">
       <HintPath>libraries\Rocket.API.dll</HintPath>
     </Reference>
@@ -63,11 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\KitCommand.cs" />
+    <Compile Include="Database\KitCooldownsDatabase.cs" />
     <Compile Include="KitsPlugin.cs" />
     <Compile Include="KitsPluginConfiguration.cs" />
     <Compile Include="Models\Kit.cs" />
     <Compile Include="Models\KitCooldown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CooldownsService.cs" />
+    <Compile Include="Storage\DataStorage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

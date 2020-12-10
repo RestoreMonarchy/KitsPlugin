@@ -48,13 +48,13 @@ namespace KitsPlugin.Commands
             }
 
             TimeSpan timeLeft;
-            if (KitsPlugin.Instance.HasGlobalCooldown(player.Id, out timeLeft))
+            if (KitsPlugin.Instance.CooldownsService.HasGlobalCooldown(player.Id, out timeLeft))
             {
                 UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitGlobalCooldown", (int)timeLeft.TotalSeconds), KitsPlugin.Instance.MessageColor);
                 return;
             }
 
-            if (KitsPlugin.Instance.HasCooldown(player.Id, kit.Name, out timeLeft))
+            if (KitsPlugin.Instance.CooldownsService.HasCooldown(player.Id, kit.Name, out timeLeft))
             {
                 UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitCooldown", (int)timeLeft.TotalSeconds), KitsPlugin.Instance.MessageColor);
                 return;
@@ -65,7 +65,7 @@ namespace KitsPlugin.Commands
                 player.GiveItem(item, 1);
             }
 
-            KitsPlugin.Instance.RegisterCooldown(player.Id, kit);
+            KitsPlugin.Instance.CooldownsService.RegisterCooldown(player.Id, kit);
             UnturnedChat.Say(caller, KitsPlugin.Instance.Translate("KitSuccess", kit.Name), KitsPlugin.Instance.MessageColor);
         }
     }
